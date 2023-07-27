@@ -1,38 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/pages/login.dart';
 import 'package:flutter_catalog/utils/routes.dart';
+import 'package:flutter_catalog/widgets/drawer.dart';
+import 'package:flutter_catalog/widgets/themes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-int days =30;
+int days = 30;
 String name = "niaz";
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(context){
-
+  Widget build(context) {
     return MaterialApp(
-
-      initialRoute: "/LoginScreen",
-      routes: {
-        MyRoutes.homeRoute  : (context) => const MyApp(),
-        MyRoutes.loginRoute:(context) => const LoginScreen()
-      },
-
+        initialRoute: MyRoutes.homeRoute,
+        routes: {MyRoutes.loginRoute: (context) => const LoginScreen()},
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.light,
         darkTheme: ThemeData(
-          primaryTextTheme: GoogleFonts.latoTextTheme(),
+            primaryTextTheme: GoogleFonts.latoTextTheme(),
             fontFamily: GoogleFonts.lato().fontFamily,
-            brightness: Brightness.dark
-        ),
-        theme: ThemeData(primarySwatch: Colors.lightBlue),
+            brightness: Brightness.dark),
+
+        theme: MyThemes.themeData,
         home: Scaffold(
           appBar: AppBar(
             title: const Text('Catalog App'),
@@ -40,9 +35,7 @@ class MyApp extends StatelessWidget{
           body: Center(
             child: Text('welcome $name to $days days of flutter'),
           ),
-          drawer: const Drawer(),
-        )
-    );
+          drawer: const MyDrawer(),
+        ));
   }
-
 }
